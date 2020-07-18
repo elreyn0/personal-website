@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+      <title> Elise Reynolds</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+      </title>
+   </head>
+   <style>
+
+      h5{
+      padding-bottom: 5px;
+      padding-top: 3px;
+      }
+      .genre{
+      border:solid 2px;
+      border-radius: 3px;
+      margin:5px;
+      white-space: nowrap;
+      background-color:#ccc;
+      padding:2px;
+      }
+      /*img {
+      height: 200px;
+      }*/
+   </style>
+   <body style="background-color: aliceblue;" >
+     <div id='app'>
+
+      <div>
+         <ul class="nav nav-pills nav-stacked" style= "position:fixed; background-color: rgb(172, 200, 231); border-radius: 4px; margin-left: 2px; margin-top: -18px;">
+            <li class="active"><a data-toggle="pill" href="#Home" style="height: 60px; width: 120px;">Home</a></li>
+            <li><a data-toggle="pill" href="#AboutMe" style="height: 60px; width: 120px;">About Me</a></li>
+            <li><a data-toggle="pill" href="#Resume" style="height: 60px; width: 120px;">Resume</a></li>
+            <li><a data-toggle="pill" href="#Portfolio" style="height: 60px; width: 120px;">Portfolio</a></li>
+            
+         </ul>
+         <div class="tab-content" style = "margin-left: 150px; margin-top: 20px;">
+            <div id="Home" class="tab-pane fade in active">
+               <p style= "width: 400px; margin-left: 30%; text-align: justify;"><b>Elise Reynolds </b> {{home.Info}}</p> 
+               <br>
+               <img src= "MarchingPic.jpeg" style= "width: 500px; border-radius: 100%; margin-left: 27%">
+               
+            </div>
+            
+            <div id="Resume" class="tab-pane fade">
+                  <h1><b> {{resume.Name}}</b></h1>
+                  <h2><b> {{resume.Title}}</b></h2>
+                  <h4><b> {{resume.Address}}</b></h4>
+                  <h4><b> {{resume.Number}}</b></h4>
+                  <h4><b> {{resume.Email}}</b></h4>
+                  <br>
+                  <h2><b>Skills:</b></h2>
+                  <p style= "width:600px; margin-left: 40px;">{{resume.Skills}}</p>
+                  <br>
+                  <h2><b>Experience:</b></h2>
+                  <div v-for= "job in resume.Experience" style= "margin-left: 25px;">
+                     <h4><b>{{job.Company}}</b></h4>
+                     <h4>{{job.JobTitle}}</h4>
+                     <h5 style= "color: gray;">{{job.Dates}},&NonBreakingSpace;{{job.Location}}</h5>
+                     <p style= "width:600px; margin-left: 10px;">{{job.Description}}</p>
+                     <br>
+                  </div>
+                  <h2><b>Education:</b></h2>
+                  <div v-for= "school in resume.Education" style= "margin-left:25px;">
+                     <h4><b>{{school.Name}}</b></h4>
+                     <h5 style = "color: gray;">{{school.Time}}, &NonBreakingSpace;{{school.Location}}</h5>
+                     <p style = "width:600px; margin-left: 10px;">{{school.Description}}</p> 
+                     <br>
+                  </div>
+                  <h2><b>Project Experience:</b></h2>
+                  <div v-for= "project in resume.ProjectExperience" style = "margin-left:25px;">
+                     <h4><b>{{project.Company}}</b></h4>
+                     <h4>{{project.SubTitle}}</h4>
+                     <h5 style = "color: gray;">{{project.Date}}&NonBreakingSpace;{{project.Location}}</h5>
+                     <p style = "width:600px; margin-left: 10px;">{{project.Description}}</p>
+                     <br>
+                  </div>
+             </div>
+ 
+             <div id="Portfolio" class="tab-pane fade" >
+                 <h2><b>Projects:</b></h2>
+                 <div v-for= "project in portfolio">
+                    <h4><b>{{project.Name}}</b></h4>
+                    <p><a target= "_blank" :href="project.Link" >Available Here</a></p>
+                    <p style= "width: 600px;">{{project.Description}}</p>
+                    <br>
+                 </div>
+            </div>
+            <div id="AboutMe" class="tab-pane fade">
+               <h2><b>Interests:</b></h2>
+               <div v-for= "interest in aboutMe">
+                  <h4><b>{{interest.Name}}</b></h4>
+                  <p style= "width: 600px; margin-left: 10px;">{{interest.Description}}</p>
+                  <br>
+               </div>
+            </div>
+ 
+         </div>
+      </div>
+
+    </div>
+    <script src="script.js"></script>
+
+   </body>
+</html>
